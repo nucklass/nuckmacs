@@ -16,7 +16,8 @@
  '(package-selected-packages
    '(w3m company dashboard multiple-cursors theme-magic spotify dockerfile-mode arduino-mode forth-mode rainbow-delimiters swiper ob-rust drawille csv-mode bluetooth gruvbox-theme dracula-theme scala-mode yaml-mode yaml fsharp-mode 2048-game cobol-mode dark-souls flappymacs hacker-typer isend-mode kaomoji lolcat mbo70s-theme mines moe-theme nyan-mode pacmacs poly-org rainbow-mode ranger rubik roguel-ike rustic rust-mode scad-preview scad-mode sexy-monochrome-theme spacemacs-theme sqlite3 vscode-dark-plus-theme vscode-icon python-mode powerline ob-julia-vterm material-theme julia-mode ess))
  '(tool-bar-mode nil)
- '(tooltip-mode nil))
+ '(tooltip-mode nil)
+ '(warning-suppress-types '((comp))))
 
 (unless package-archive-contents
   (package-refresh-contents))
@@ -101,6 +102,15 @@
 ;switch windows with shift-arrow, no more need to C-x o
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
+
+;enable rainbow-delimeters in most programming modes
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;enable company auto-completion in most programming modes
+(add-hook 'prog-mode-hook #'company-mode)
+
+;set eww as the default browser to open links in emacs 
+(setq browse-url-browser-function 'eww-browse-url)
 
 ;startup options
 (require 'dashboard)
